@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="AfstandCalculator.Views.AfstandtotvriendenPage"
+    Title="Reisafstand tot jouw vrienden"
+    xmlns:models="clr-namespace:AfstandCalculator.Models"
+    xmlns:local="clr-namespace:AfstandCalculator.Views"
+    x:DataType="local:AfstandtotvriendenPage"
+    >
+
+
+    <FlexLayout
+        Direction="Column"
+        Margin="10">
+
+        <Label
+            BackgroundColor="White"
+            TextColor="Black"
+            x:Name="lblVriend"
+        Text=""
+        VerticalOptions="Center"
+        HorizontalOptions="Center" />
+        <Label
+            BackgroundColor="White"
+            TextColor="Black"
+            x:Name="lblTelefoon"
+            Text=""
+            VerticalOptions="Center"
+            HorizontalOptions="Center" />
+        <Label
+            BackgroundColor="White"
+            TextColor="Black"
+            x:Name="lblAdres"
+            Text=""
+            VerticalOptions="Center"
+            HorizontalOptions="Center" />
+
+        <Button Text="Wijzig" Clicked="Button_Clicked" BackgroundColor="Blue" TextColor="White"></Button>
+        
+        
+        
+        <ListView
+        x:Name="LVafstandvrienden"
+        Margin="10"
+        HasUnevenRows="True"
+            ItemSelected="LVafstandvrienden_ItemSelected"
+            ItemsSource="{Binding selectedFriends}">
+        <ListView.ItemTemplate>
+            <DataTemplate x:DataType="models:Vriend">
+                <ViewCell>
+                    <VerticalStackLayout
+                        Padding="5"
+                        Margin="5">
+                        <Grid
+                            BackgroundColor="Beige">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                    <ColumnDefinition />
+
+
+
+                                </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition
+                                    Height="80" />
+                                <RowDefinition />
+                            </Grid.RowDefinitions  >
+
+                            <Label
+                                Padding="5"
+                                Grid.Column="0"
+                                Grid.Row="0"
+                                Text="{Binding FullName}"
+                                TextColor="Black" />
+                            <Label
+                                Padding="5"
+                                Grid.Column="1"
+                                Grid.Row="0"
+                                Text="{Binding Adres.Adresregel}"
+                                TextColor="Black" />
+                            <Label
+                                Padding="5"
+                                Grid.Column="2"
+                                Grid.Row="0"
+                                    Text="{Binding Afstand}"
+                                TextColor="Black" />
+
+
+                        </Grid>
+                    </VerticalStackLayout>
+
+                </ViewCell>
+
+            </DataTemplate>
+
+        </ListView.ItemTemplate>
+
+
+    </ListView>
+</FlexLayout>
+
+</ContentPage>
+
+
