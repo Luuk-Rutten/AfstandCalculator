@@ -16,8 +16,7 @@ public partial class AfstandtotvriendenPage : ContentPage
 
     public List<Vriend> selectedFriends { get; set; }
 
-    //public  List <Vriend> selectedFriends = new List <Vriend> ();
-    //public List<Vriend> Vrienden = new List<Vriend> ();
+
 
     public AfstandtotvriendenPage(Vriend selectedItem, VriendenDatabase database)
     {
@@ -60,20 +59,27 @@ protected override async void OnNavigatedTo(NavigatedToEventArgs args)
 
     }
 
-    /*    private async Task LVafstandvrienden_ItemSelectedAsync(object sender, SelectedItemChangedEventArgs e)
-        {
-            await Navigation.PushAsync(new VriendDetailPage(selectedItem));
 
-        }*/
 
-    private void LVafstandvrienden_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+    private async void LVafstandvrienden_ItemSelected(object sender, SelectedItemChangedEventArgs e)
     {
-        Navigation.PushAsync(new VriendDetailPage(selectedItem));
+        // await Navigation.PushAsync(new VriendDetailPage(selectedItem));
+
+        var selectedItem = e.SelectedItem as Vriend;
+
+        if (selectedItem != null)
+        {
+
+            await Navigation.PushAsync(new VriendDetailPage(selectedItem, Database));
+
+        }
     }
 
-    private void Button_Clicked(object sender, EventArgs e)
+    private async void Button_Clicked(object sender, EventArgs e)
     {
-        Navigation.PushAsync(new VriendDetailPage(selectedItem));
+
+
+       await Navigation.PushAsync(new VriendDetailPage(selectedItem, Database));
 
     }
 }

@@ -4,52 +4,63 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="AfstandCalculator.Views.VriendDetailPage"
     Title="VriendDetailPage"
-    
-   >
+    xmlns:models="clr-namespace:AfstandCalculator.Models"
+    xmlns:local="clr-namespace:AfstandCalculator.Views"
+    x:DataType="local:VriendDetailPage">
+
+    <FlexLayout
+        Direction="Column"
+        Margin="10">
+        <ListView
+            HasUnevenRows="True"
+            ItemsSource="{Binding selectedItem}">
 
 
-    <ListView
-        BackgroundColor="Beige">
 
             <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                    <VerticalStackLayout
+        <DataTemplate >
+
+            <ViewCell >
+                
+                <VerticalStackLayout 
                         Padding="5"
-                        Margin="5">
-                        <Label
+                        Margin="15">
+
+                            <Label
                             Text="Naam en Telefoonnummer"
                             FontSize="Header"
                             VerticalOptions="Center"
                             HorizontalOptions="Center"
-                            TextColor="Black" />
+                            TextColor="Black"
+                                />
                         <Entry
-                            x:Name="VoornaamEntryveld"
+                        x:Name="VoornaamEntryveld"
                             Placeholder="Voornaam"
                             TextColor="Black"
+
                             />
                         <Entry
                             x:Name="AchternaamEntryveld"
                             Placeholder="Achternaam"
                             TextColor="Black"
-                            Text="{Binding Achternaam}" />
+                            Text="{Binding selectedItem.Achternaam}" />
                         <Entry
                             x:Name="TelefoonEntryveld"
                             Placeholder="Telefoonnummer"
                             TextColor="Black"
-                            Text="{Binding Telefoon}" />
+                                Text="{Binding selectedItem.Telefoon}" />
                         <Entry
                             x:Name="AdresEntryveld"
                             Placeholder="Vul Adres in"
                             TextColor="Black"
-                            Text="{Binding Adres}" />
-                   
-                    
-                    </VerticalStackLayout>
+                                Text="{Binding selectedItem.Adres}" />
 
-                </ViewCell>
-
-                </DataTemplate>
+                </VerticalStackLayout>
+                                    </ViewCell>
+                                </DataTemplate>
                 </ListView.ItemTemplate>
-        </ListView>
+
+    </ListView>
+    </FlexLayout>
+
 </ContentPage>
