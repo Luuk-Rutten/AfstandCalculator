@@ -24,6 +24,12 @@ public class VriendenDatabase : IDisposable
         return await Database.Vrienden.Include(v => v.Adres).ToListAsync();
     }
 
+    public async Task<List<Adres>> GetAdresAsync()
+    {
+        return await Database.Adressen.ToListAsync();
+    }
+
+
     public IEnumerable<Vriend> SearchVriendenAsync(string InputText)
     {
         var Vrienden = Database.Vrienden;

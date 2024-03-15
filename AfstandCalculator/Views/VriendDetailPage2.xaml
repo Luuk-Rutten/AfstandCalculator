@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AfstandCalculator.Views.VriendDetailPage2"
+             Title="VriendDetailPage2">
+
+    <FlexLayout
+        Direction="Column"
+        Margin="10">
+        <VerticalStackLayout>
+
+            <Label 
+            Text="Welcome to .NET MAUI!"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+
+            <Label
+                Text="Naam en Telefoonnummer"
+                FontSize="Large"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                 />
+         
+                <Entry
+                    x:Name="VoornaamEntryveld"
+                    Placeholder="Voornaam"
+                    TextColor="Black"
+                        BackgroundColor="White"/>
+                <Entry
+                    x:Name="AchternaamEntryveld"
+                    Placeholder="Achternaam"
+                    TextColor="Black"
+                BackgroundColor="White"
+                     />
+                <Entry
+                    x:Name="TelefoonEntryveld"
+                    Placeholder="Telefoonnummer"
+                    TextColor="Black"
+                BackgroundColor="White" />
+                <Entry
+                    x:Name="AdresEntryveld"
+                    Placeholder="Vul Adres in"
+                    TextColor="Black"
+                BackgroundColor="White"
+               />
+
+
+            <Picker
+                x:Name="AdresPicker"
+                Title="Selecteer adres"
+                ItemsSource="{Binding AdresList}"
+                ItemDisplayBinding="{Binding Adresregel}"
+                SelectedIndexChanged="AdresPicker_SelectedIndexChanged"
+                
+                />
+
+
+        </VerticalStackLayout>
+  
+    </FlexLayout>
+
+</ContentPage>

@@ -12,11 +12,11 @@ public partial class VriendDetailPage : ContentPage
 
     Entry VoornaamEntryveld = new Entry();
     Entry AchternaamEntryveld = new Entry();
-    public VriendDetailPage(Vriend selectedItem, VriendenDatabase database)
+    public VriendDetailPage(Vriend selectedItem)
 	{
         InitializeComponent();
         this.selectedItem = selectedItem;
-        Database = database;
+        //Database = database;
         VoornaamEntryveld.Text = selectedItem.Voornaam;
         AchternaamEntryveld.Text = selectedItem.Achternaam;
     }

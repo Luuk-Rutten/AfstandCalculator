@@ -6,6 +6,7 @@ using Microsoft.Maui.Graphics.Text;
 using Microsoft.Maui;
 using static System.Net.Mime.MediaTypeNames;
 using System.Xml.Linq;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace AfstandCalculator.Views;
 
@@ -66,11 +67,10 @@ protected override async void OnNavigatedTo(NavigatedToEventArgs args)
         // await Navigation.PushAsync(new VriendDetailPage(selectedItem));
 
         var selectedItem = e.SelectedItem as Vriend;
-
         if (selectedItem != null)
         {
 
-            await Navigation.PushAsync(new VriendDetailPage(selectedItem, Database));
+            await Navigation.PushAsync(new VriendDetailPage2(selectedItem, Database));
 
         }
     }
@@ -79,7 +79,7 @@ protected override async void OnNavigatedTo(NavigatedToEventArgs args)
     {
 
 
-       await Navigation.PushAsync(new VriendDetailPage(selectedItem, Database));
+       await Navigation.PushAsync(new VriendDetailPage2(selectedItem, Database));
 
     }
 }
