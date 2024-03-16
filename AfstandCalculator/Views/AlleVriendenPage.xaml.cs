@@ -14,15 +14,27 @@ public partial class AlleVriendenPage : ContentPage
         InitializeComponent();
         Database = db;
         Connectivity = connectivity;
-        Database.GetVriendenAsync();
+        //Database.GetVriendenAsync();
         Task.Run(async () => LVVrienden.ItemsSource = await db.GetVriendenAsync());
     }
 
 
-    protected override async void OnNavigatedTo(NavigatedToEventArgs args)
+    protected override void OnNavigatedTo(NavigatedToEventArgs args)
     {
+       // await Database.GetVriendenAsync();
+
         base.OnNavigatedTo(args);
         SearchBar.Text = string.Empty;
+
+
+    }
+
+    protected override async void OnAppearing()
+    {
+        await Database.GetVriendenAsync();
+
+        base.OnAppearing();
+
 
     }
 

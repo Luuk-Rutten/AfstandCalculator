@@ -29,6 +29,11 @@ public class VriendenDatabase : IDisposable
         return await Database.Adressen.ToListAsync();
     }
 
+    public async Task Update(Vriend vriend)
+    {
+        Database.Update(vriend).Context.SaveChanges();
+        await Database.SaveChangesAsync();
+    }
 
     public IEnumerable<Vriend> SearchVriendenAsync(string InputText)
     {

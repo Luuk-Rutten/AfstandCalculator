@@ -12,13 +12,13 @@ public partial class VriendDetailPage2 : ContentPage
     public List<Adres> AdresList { get; set; }
 
 
-    public Vriend selectedItem { get; set; }
+    public Vriend SelectedVriend { get; set; }
 
 
     public VriendDetailPage2(Vriend selectedItem, VriendenDatabase database)
     {
         InitializeComponent();
-        this.selectedItem = selectedItem;
+        this.SelectedVriend = selectedItem;
         Database = database;
         VoornaamEntryveld.Text = selectedItem.Voornaam;
         AchternaamEntryveld.Text = selectedItem.Achternaam;
@@ -33,15 +33,45 @@ public partial class VriendDetailPage2 : ContentPage
     protected override async void OnNavigatedTo(NavigatedToEventArgs args)
     {
         base.OnNavigatedTo(args);
+      //  this.SelectedVriend = SelectedVriend;
 
 
 
     }
 
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+       // this.SelectedVriend = SelectedVriend;
+
+    }
+
     private void AdresPicker_SelectedIndexChanged(object sender, EventArgs e)
     {
-        selectedItem.Adres = (Adres)AdresPicker.SelectedItem;
-        AdresEntryveld.Text = selectedItem.Adres.Adresregel;
+        SelectedVriend.Adres = (Adres)AdresPicker.SelectedItem;
+        AdresEntryveld.Text = SelectedVriend.Adres.Adresregel;
+
+    }
+
+
+
+    private async void SaveButton_Clicked(object sender, EventArgs e)
+    {
+        await Database.Update(SelectedVriend);
+                {
+            SelectedVriend.Voornaam = VoornaamEntryveld.Text;
+            SelectedVriend.Achternaam = AchternaamEntryveld.Text;
+                    SelectedVriend.Telefoon = TelefoonEntryveld.Text;
+            SelectedVriend.Adres = SelectedVriend.Adres;
+
+                }
+        
+     }
+        
+ 
+
+    private void AdresSwitch_Toggled(object sender, ToggledEventArgs e)
+    {
 
     }
 }

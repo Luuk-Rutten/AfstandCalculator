@@ -11,7 +11,7 @@ namespace AfstandCalculator.Data
 
         public VriendenContext(DbContextOptions<VriendenContext> options) : base(options)
         {
-            //Database.EnsureDeleted();
+           // Database.EnsureDeleted();
             Database.EnsureCreated();
         }
 

@@ -22,20 +22,39 @@ public partial class AfstandtotvriendenPage : ContentPage
     public AfstandtotvriendenPage(Vriend selectedItem, VriendenDatabase database)
     {
         InitializeComponent();
+        Task.Run(async () => LVafstandvrienden.ItemsSource = await Database.GetVriendenAsync());
+
         this.selectedItem = selectedItem;
         Database = database;
         lblVriend.Text = selectedItem.FullName.ToString();
         lblTelefoon.Text = selectedItem.Telefoon.ToString();
         lblAdres.Text = selectedItem.Adres.Adresregel.ToString();
-        //Task.Run(async () => LVafstandvrienden.ItemsSource = await Database.GetVriendenAsync());
 
 }
 
 protected override async void OnNavigatedTo(NavigatedToEventArgs args)
     {
         base.OnNavigatedTo(args);
+        this.selectedItem = selectedItem;
 
-       await BerekenAfstand();
+        await BerekenAfstand();
+        LVafstandvrienden.ItemsSource = selectedFriends;
+        lblVriend.Text = selectedItem.FullName.ToString();
+        lblTelefoon.Text = selectedItem.Telefoon.ToString();
+        lblAdres.Text = selectedItem.Adres.Adresregel.ToString();
+
+    }
+
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+        this.selectedItem = selectedItem;
+
+        await BerekenAfstand();
+        LVafstandvrienden.ItemsSource = selectedFriends;
+        lblVriend.Text = selectedItem.FullName.ToString();
+        lblTelefoon.Text = selectedItem.Telefoon.ToString();
+        lblAdres.Text = selectedItem.Adres.Adresregel.ToString();
 
     }
 
@@ -78,8 +97,8 @@ protected override async void OnNavigatedTo(NavigatedToEventArgs args)
     private async void Button_Clicked(object sender, EventArgs e)
     {
 
-
-       await Navigation.PushAsync(new VriendDetailPage2(selectedItem, Database));
+     
+        await Navigation.PushAsync(new VriendDetailPage2(selectedItem, Database));
 
     }
 }

@@ -54,7 +54,22 @@
                 
                 />
 
+            <Switch
+                x:Name="AdresSwitch"
+                 HorizontalOptions="Center"
+                 IsToggled="False"
+                 Toggled="AdresSwitch_Toggled"
+                />
 
+            <Editor
+                x:Name="AdresEditor"
+                Placeholder="Straat" />
+                        
+            <Button
+                x:Name="SaveButton"
+                Text="Sla op"
+                 Clicked="SaveButton_Clicked"
+                />
         </VerticalStackLayout>
   
     </FlexLayout>
