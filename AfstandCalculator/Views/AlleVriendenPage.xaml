@@ -4,13 +4,21 @@
              x:Class="AfstandCalculator.Views.AlleVriendenPage"
              Title="Alle Vrienden"
              >
-
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            x:Name="NewItem"
+            IconImageSource="newitem.png"
+            Clicked="NewItem_Clicked" />
+        
+    </ContentPage.ToolbarItems>
 
     <FlexLayout
         Direction="Column"
         Margin="10">
 
-        <VerticalStackLayout>
+  
+
+            <VerticalStackLayout>
 
             <!--https://www.youtube.com/watch?v=U760NY900zY video over searchbar -->
             <SearchBar

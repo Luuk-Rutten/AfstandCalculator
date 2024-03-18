@@ -7,23 +7,21 @@ public partial class AlleVriendenPage : ContentPage
 {
     VriendenDatabase Database;
     IConnectivity Connectivity;
-    readonly Vriend vriend1;
-    readonly Adres adres1;
+
+
     public AlleVriendenPage(VriendenDatabase db, IConnectivity connectivity)
     {
         InitializeComponent();
         Database = db;
         Connectivity = connectivity;
-        //Database.GetVriendenAsync();
-        Task.Run(async () => LVVrienden.ItemsSource = await db.GetVriendenAsync());
     }
 
 
-    protected override void OnNavigatedTo(NavigatedToEventArgs args)
+    protected override async void OnNavigatedTo(NavigatedToEventArgs args)
     {
-       // await Database.GetVriendenAsync();
 
         base.OnNavigatedTo(args);
+        LVVrienden.ItemsSource = await Database.GetVriendenAsync();
         SearchBar.Text = string.Empty;
 
 
@@ -31,7 +29,6 @@ public partial class AlleVriendenPage : ContentPage
 
     protected override async void OnAppearing()
     {
-        await Database.GetVriendenAsync();
 
         base.OnAppearing();
 
@@ -50,13 +47,14 @@ public partial class AlleVriendenPage : ContentPage
 
         if (selectedItem != null)
         {
-/*           await Navigation.PushAsync(new AfstandtotvriendenPage(selectedItem.FullName, selectedItem.Telefoon, selectedItem.Adres,  Database));
-*/            await Navigation.PushAsync(new AfstandtotvriendenPage(selectedItem, Database));
+           await Navigation.PushAsync(new AfstandtotvriendenPage(selectedItem, Database));
 
         }
 
+    }
 
-
-
+    private async void NewItem_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new VriendDetailPage2(Database));
     }
 }

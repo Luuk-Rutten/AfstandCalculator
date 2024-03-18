@@ -22,7 +22,6 @@ public partial class AfstandtotvriendenPage : ContentPage
     public AfstandtotvriendenPage(Vriend selectedItem, VriendenDatabase database)
     {
         InitializeComponent();
-        Task.Run(async () => LVafstandvrienden.ItemsSource = await Database.GetVriendenAsync());
 
         this.selectedItem = selectedItem;
         Database = database;

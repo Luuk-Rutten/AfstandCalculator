@@ -8,7 +8,6 @@ public partial class AlleAdressenPage : ContentPage
 	{
 		InitializeComponent();
         Database = db;
-        Task.Run(async () => LVAdres.ItemsSource = await db.GetVriendenAsync());
     }
 
     protected override async void OnNavigatedTo(NavigatedToEventArgs args)
