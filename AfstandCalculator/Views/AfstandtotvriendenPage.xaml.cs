@@ -25,9 +25,7 @@ public partial class AfstandtotvriendenPage : ContentPage
 
         this.selectedItem = selectedItem;
         Database = database;
-        lblVriend.Text = selectedItem.FullName.ToString();
-        lblTelefoon.Text = selectedItem.Telefoon.ToString();
-        lblAdres.Text = selectedItem.Adres.Adresregel.ToString();
+ 
 
 }
 
@@ -37,10 +35,7 @@ protected override async void OnNavigatedTo(NavigatedToEventArgs args)
         this.selectedItem = selectedItem;
 
         await BerekenAfstand();
-        LVafstandvrienden.ItemsSource = selectedFriends;
-        lblVriend.Text = selectedItem.FullName.ToString();
-        lblTelefoon.Text = selectedItem.Telefoon.ToString();
-        lblAdres.Text = selectedItem.Adres.Adresregel.ToString();
+        await PopulateLabel();
 
     }
 
@@ -50,12 +45,28 @@ protected override async void OnNavigatedTo(NavigatedToEventArgs args)
         this.selectedItem = selectedItem;
 
         await BerekenAfstand();
+        await PopulateLabel();
+
+
+    }
+    public async Task PopulateLabel()
+    {
         LVafstandvrienden.ItemsSource = selectedFriends;
         lblVriend.Text = selectedItem.FullName.ToString();
         lblTelefoon.Text = selectedItem.Telefoon.ToString();
+
+        if(selectedItem.Adres == null)
+        {
+            lblAdres.Text = "Geen adres opgegeven."; 
+
+        }
+        else
+
         lblAdres.Text = selectedItem.Adres.Adresregel.ToString();
 
+
     }
+  
 
     public async Task BerekenAfstand()
     {
@@ -65,7 +76,7 @@ protected override async void OnNavigatedTo(NavigatedToEventArgs args)
 
         foreach (var vriend in VriendenfromDb)
         {
-            if (vriend.VriendId != selectedItem.VriendId)
+            if (vriend.VriendId != selectedItem.VriendId && selectedItem.Adres != null)
             {
                 var AfstandTussenVrienden = await LocationService.GetDistanceBetweenPoints(selectedItem.Adres.Adresregel, vriend.Adres.Adresregel);
                 vriend.Afstand = $"{AfstandTussenVrienden} KM";

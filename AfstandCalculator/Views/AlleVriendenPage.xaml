@@ -12,6 +12,9 @@
         
     </ContentPage.ToolbarItems>
 
+
+    <ScrollView>
+    
     <FlexLayout
         Direction="Column"
         Margin="10">
@@ -92,6 +95,6 @@
 
         </ListView>
     </FlexLayout>
-
+    </ScrollView>
 
 </ContentPage>

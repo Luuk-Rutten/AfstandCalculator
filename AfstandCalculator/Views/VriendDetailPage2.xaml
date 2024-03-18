@@ -5,11 +5,13 @@
     x:Class="AfstandCalculator.Views.VriendDetailPage2"
     Title="VriendDetailPage2">
 
-    <FlexLayout>
+    <ScrollView
+        Padding="10">
 
 
 
-        <VerticalStackLayout>
+        <VerticalStackLayout
+            >
 
             <Label
                 Text="Welcome to .NET MAUI!"
@@ -42,8 +44,30 @@
                 x:Name="AdresEntryveld"
                 Placeholder="Vul Adres in"
                 TextColor="Black"
+                BackgroundColor="White"
+                IsVisible="Collapse"/>
+            <HorizontalStackLayout HorizontalOptions="FillAndExpand"  FlowDirection="LeftToRight"  >
+            <Entry
+                x:Name="StraatEntryveld"
+                Placeholder="Straat"
+                TextColor="Black"
                 BackgroundColor="White" />
-
+                <Entry
+                    x:Name="PostcodeEntryveld"
+                    Placeholder="Postcode"
+                    TextColor="Black"
+                    BackgroundColor="White" />
+                <Entry
+                    x:Name="PlaatsEntryveld"
+                    Placeholder="Plaats"
+                    TextColor="Black"
+                    BackgroundColor="White" />
+                <Entry
+                    x:Name="LandEntryveld"
+                    Placeholder="Land"
+                    TextColor="Black"
+                    BackgroundColor="White" />
+            </HorizontalStackLayout>
 
             <Picker
                 x:Name="AdresPicker"
@@ -78,5 +102,5 @@
                 Clicked="SaveButton_Clicked" />
 
         </VerticalStackLayout>
-    </FlexLayout>
+    </ScrollView>
 </ContentPage>

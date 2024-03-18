@@ -14,6 +14,7 @@ public partial class VriendDetailPage2 : ContentPage
 
     public Vriend SelectedVriend { get; set; }
 
+    string newadres;
 
     public VriendDetailPage2(Vriend selectedItem, VriendenDatabase database)
     {
@@ -31,7 +32,7 @@ public partial class VriendDetailPage2 : ContentPage
     {
         InitializeComponent();
         Database = database;
-
+        SelectedVriend = new Vriend();
     }
 
     protected override async void OnNavigatedTo(NavigatedToEventArgs args)
@@ -64,23 +65,39 @@ public partial class VriendDetailPage2 : ContentPage
 
     private async void SaveButton_Clicked(object sender, EventArgs e)
     {
+
         if (SelectedVriend == null)
+
+
         {
-            if (VoornaamEntryveld.Text == "" || AchternaamEntryveld.Text == "" || TelefoonEntryveld.Text == "" || AdresEntryveld.Text == "")
+            if (VoornaamEntryveld.Text == "" || AchternaamEntryveld.Text == "" || TelefoonEntryveld.Text == "" /*|| AdresEntryveld.Text == ""*/)
             {
                 await DisplayAlert("Foute invoer", "Vul alle velden in", "Oke");
             }
             else
             {
+                VoornaamEntryveld.Text = SelectedVriend.Voornaam;
+                AchternaamEntryveld.Text = SelectedVriend.Achternaam;
+                TelefoonEntryveld.Text = SelectedVriend.Telefoon;
 
-                await Database.AddVriend(new Vriend
-                {
-                    Voornaam = VoornaamEntryveld.Text,
-                    Achternaam = AchternaamEntryveld.Text,
-                    Telefoon = TelefoonEntryveld.Text,
-                   // Adres = (Adres)AdresEntryveld.Text
+                /*                newadres = $"{StraatEntryveld.Text}, {PostcodeEntryveld.Text}, {PlaatsEntryveld.Text}, {LandEntryveld.Text}";
 
-                });
+                                Vriend newvriend = new Vriend();
+                                newadres = $"{newvriend.Adres.Adresregel}";
+                                VoornaamEntryveld.Text = newvriend.Voornaam;
+                                AchternaamEntryveld.Text = newvriend.Achternaam;
+                                TelefoonEntryveld.Text = newvriend.Telefoon;
+
+                                await Database.AddVriend(newvriend);
+                                {
+
+
+                                    Voornaam = VoornaamEntryveld.Text,
+                                    Achternaam = AchternaamEntryveld.Text,
+                                    Telefoon = TelefoonEntryveld.Text,
+
+
+                                });*/
             }
         }
 
@@ -142,6 +159,8 @@ public partial class VriendDetailPage2 : ContentPage
 
             }
         }
+       
+
 
         }
 

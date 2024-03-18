@@ -9,10 +9,12 @@
     x:DataType="local:AfstandtotvriendenPage"
     >
 
+    <ScrollView>
 
     <FlexLayout
         Direction="Column"
-        Margin="10">
+        Margin="10"
+        >
 
         <Label
             BackgroundColor="White"
@@ -101,7 +103,7 @@
 
     </ListView>
 </FlexLayout>
-
+    </ScrollView>
 </ContentPage>
 
 
