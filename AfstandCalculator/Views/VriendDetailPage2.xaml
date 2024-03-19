@@ -29,7 +29,7 @@
                 Placeholder="Voornaam"
                 TextColor="Black"
                 BackgroundColor="White"
-                TextChanged="VoornaamEntryveld_TextChanged" />
+                 />
             <Entry
                 x:Name="AchternaamEntryveld"
                 Placeholder="Achternaam"

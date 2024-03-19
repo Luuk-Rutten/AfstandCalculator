@@ -84,6 +84,7 @@
                                 Text="{Binding Adres.Adresregel}"
                                 TextColor="Black" />
                             <Label
+                                x:Name="Afstandlbl"
                                 Padding="5"
                                 Grid.Column="2"
                                 Grid.Row="0"

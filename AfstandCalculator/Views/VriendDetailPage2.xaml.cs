@@ -9,30 +9,40 @@ public partial class VriendDetailPage2 : ContentPage
 {
     VriendenDatabase Database;
 
-    public List<Adres> AdresList { get; set; }
-
+  
 
     public Vriend SelectedVriend { get; set; }
 
-    string newadres;
+    public Adres SelectedAdres { get; set; }
+
+    //string newadres;
 
     public VriendDetailPage2(Vriend selectedItem, VriendenDatabase database)
     {
         InitializeComponent();
         this.SelectedVriend = selectedItem;
         Database = database;
+
         VoornaamEntryveld.Text = selectedItem.Voornaam;
         AchternaamEntryveld.Text = selectedItem.Achternaam;
         TelefoonEntryveld.Text = selectedItem.Telefoon;
         AdresEntryveld.Text = selectedItem.Adres.Adresregel;
-                
+        StraatEntryveld.Text = selectedItem.Adres.Straat;
+        PostcodeEntryveld.Text = selectedItem.Adres.Postcode;
+        PlaatsEntryveld.Text = selectedItem.Adres.Plaats;
+        LandEntryveld.Text = selectedItem.Adres.Land;
+
     }
+
+
+
 
     public VriendDetailPage2(VriendenDatabase database)
     {
         InitializeComponent();
         Database = database;
         SelectedVriend = new Vriend();
+ 
     }
 
     protected override async void OnNavigatedTo(NavigatedToEventArgs args)
@@ -57,8 +67,11 @@ public partial class VriendDetailPage2 : ContentPage
     private void AdresPicker_SelectedIndexChanged(object sender, EventArgs e)
     {
         SelectedVriend.Adres = (Adres)AdresPicker.SelectedItem;
-        AdresEntryveld.Text = SelectedVriend.Adres.Adresregel;
-
+        //AdresEntryveld.Text = SelectedVriend.Adres.Adresregel;
+        StraatEntryveld.Text = SelectedVriend.Adres.Straat;
+        PostcodeEntryveld.Text = SelectedVriend.Adres.Postcode;
+        PlaatsEntryveld.Text = SelectedVriend.Adres.Plaats;
+        LandEntryveld.Text = SelectedVriend.Adres.Land;
     }
 
 
@@ -66,54 +79,35 @@ public partial class VriendDetailPage2 : ContentPage
     private async void SaveButton_Clicked(object sender, EventArgs e)
     {
 
-        if (SelectedVriend == null)
 
-
+        if (VoornaamEntryveld.Text == "" || AchternaamEntryveld.Text == "" || TelefoonEntryveld.Text == "")
         {
-            if (VoornaamEntryveld.Text == "" || AchternaamEntryveld.Text == "" || TelefoonEntryveld.Text == "" /*|| AdresEntryveld.Text == ""*/)
-            {
-                await DisplayAlert("Foute invoer", "Vul alle velden in", "Oke");
-            }
-            else
-            {
-                VoornaamEntryveld.Text = SelectedVriend.Voornaam;
-                AchternaamEntryveld.Text = SelectedVriend.Achternaam;
-                TelefoonEntryveld.Text = SelectedVriend.Telefoon;
-
-                /*                newadres = $"{StraatEntryveld.Text}, {PostcodeEntryveld.Text}, {PlaatsEntryveld.Text}, {LandEntryveld.Text}";
-
-                                Vriend newvriend = new Vriend();
-                                newadres = $"{newvriend.Adres.Adresregel}";
-                                VoornaamEntryveld.Text = newvriend.Voornaam;
-                                AchternaamEntryveld.Text = newvriend.Achternaam;
-                                TelefoonEntryveld.Text = newvriend.Telefoon;
-
-                                await Database.AddVriend(newvriend);
-                                {
-
-
-                                    Voornaam = VoornaamEntryveld.Text,
-                                    Achternaam = AchternaamEntryveld.Text,
-                                    Telefoon = TelefoonEntryveld.Text,
-
-
-                                });*/
-            }
+            await DisplayAlert("Foute invoer", "Vul alle velden in", "Oke");
         }
+        else
+        {
 
-            
-           else // if (SelectedVriend != null)
+            SelectedVriend.Voornaam = VoornaamEntryveld.Text;
+            SelectedVriend.Achternaam = AchternaamEntryveld.Text;
+            SelectedVriend.Telefoon = TelefoonEntryveld.Text;
+
+            if  (SelectedVriend.Adres == null )
             {
+                Adres SelectedAdres = new Adres(){
+                    Straat = StraatEntryveld.Text,
+                    Postcode = PostcodeEntryveld.Text,
+                    Plaats = PlaatsEntryveld.Text,
+                    Land = LandEntryveld.Text,
+                };
+                SelectedVriend.Adres = SelectedAdres;
 
-                SelectedVriend.Voornaam = VoornaamEntryveld.Text;
-                SelectedVriend.Achternaam = AchternaamEntryveld.Text;
-                SelectedVriend.Telefoon = TelefoonEntryveld.Text;
-
-                CheckAdres();
-                await Database.Update(SelectedVriend);
 
             }
-        }
+            }
+        CheckAdres();
+        await Database.Update(SelectedVriend);
+
+    }
 
     
 
@@ -148,27 +142,22 @@ public partial class VriendDetailPage2 : ContentPage
             else
             {
                // await Database.Update(SelectedVriend);
-                {
+                
                     SelectedVriend.Adres.Straat = StraatEntry.Text;
                     SelectedVriend.Adres.Postcode = PostcodeEntry.Text;
                     SelectedVriend.Adres.Plaats = StadEntry.Text;
                     SelectedVriend.Adres.Land = LandEntry.Text;
 
-                    AdresEntryveld.Text = $"{SelectedVriend.Adres.Adresregel}";             
-                }
+                StraatEntryveld.Text = StraatEntry.Text ;
+                PostcodeEntryveld.Text = PostcodeEntry.Text;
+                PlaatsEntryveld.Text = StadEntry.Text;
+                LandEntryveld.Text = LandEntry.Text;
 
             }
         }
        
-
-
         }
 
-    private void VoornaamEntryveld_TextChanged(object sender, TextChangedEventArgs e)
-    {
-
-
-    }
 
 }
 

@@ -57,8 +57,8 @@ protected override async void OnNavigatedTo(NavigatedToEventArgs args)
 
         if(selectedItem.Adres == null)
         {
-            lblAdres.Text = "Geen adres opgegeven."; 
-
+            lblAdres.Text = "Geen adres opgegeven.";
+            //Afstandlbl.Text = "Geen adres opgegeven.";
         }
         else
 
