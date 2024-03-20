@@ -10,58 +10,52 @@
         Padding="10">
 
         <FlexLayout>
-        <VerticalStackLayout>
+            <VerticalStackLayout>
 
-            <!--https://www.youtube.com/watch?v=U760NY900zY video over searchbar -->
-            <SearchBar
-                Placeholder="Zoek adres"
-                x:Name="SearchBar"
-                TextChanged="SearchBar_TextChanged"></SearchBar>
 
-        </VerticalStackLayout>
+                <Entry
+                    x:Name="EntryStraat"
+                    Placeholder="Straat"/>
+                <Entry
+                    x:Name="EntryPostcode"
+                    Placeholder="Postcode" />
+                <Entry
+                    x:Name="EntryPlaats"
+                    Placeholder="Plaats" />
+                <Entry
+                    x:Name="EntryLand"
+                    Placeholder="Land" />
 
-        <ListView
+                <Button 
+                    x:Name="SaveAdresBtn"
+                    Text="Sla op"
+                    Clicked="SaveAdresBtn_Clicked"
+                    />
+                <ListView
             x:Name="LVAdres"
             Margin="10"
             HasUnevenRows="True"
-            ItemSelected="LVAdres_ItemSelected">
+            ItemSelected="LVAdres_ItemSelected"
+                    ItemTapped="LVAdres_ItemTapped">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <VerticalStackLayout
                             Padding="5"
                             Margin="5">
-                            <Grid
-                                BackgroundColor="Beige">
-
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition />
-                                    <ColumnDefinition />
+                          
 
 
-
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition
-                                        Height="80" />
-                                    <RowDefinition />
-                                </Grid.RowDefinitions  >
 
                                 <Label
                                     Padding="5"
-                                    Grid.Column="0"
-                                    Grid.Row="0"
-                                    Text="{Binding FullName}"
-                                    TextColor="Black" />
 
-                                <Label
-                                    Padding="5"
-                                    Grid.Column="0"
-                                    Grid.Row="1"
-                                    Text="{Binding Adres.Adresregel}"
-                                    TextColor="Black" />
+                                    Text="{Binding Adresregel}"
+                                    TextColor="Black" 
+                                    BackgroundColor="White"
+                                    />
 
-                            </Grid>
+                 
                         </VerticalStackLayout>
 
                     </ViewCell>
@@ -72,6 +66,8 @@
 
 
         </ListView>
+            </VerticalStackLayout>
+
         </FlexLayout>
     </ScrollView>
 

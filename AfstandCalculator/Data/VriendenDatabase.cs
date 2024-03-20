@@ -36,9 +36,22 @@ public class VriendenDatabase : IDisposable
         await Database.SaveChangesAsync();
     }
 
-    public async Task AddVriend (Vriend vriend)
+    public async Task Delete(Vriend vriend)
     {
-        Database.Add(vriend); 
+        Database.Remove(vriend);
+
+        await Database.SaveChangesAsync();
+    }
+
+    public async Task AddAdres (Adres adres)
+    {
+        Database.Add(adres); 
+        await Database.SaveChangesAsync();
+    }
+
+    public async Task UpdateAdres(Adres adres)
+    {
+        Database.Update(adres);
         await Database.SaveChangesAsync();
     }
 

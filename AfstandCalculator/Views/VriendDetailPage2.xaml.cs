@@ -11,7 +11,7 @@ public partial class VriendDetailPage2 : ContentPage
 
   
 
-    public Vriend SelectedVriend { get; set; }
+    public Vriend? SelectedVriend { get; set; }
 
     public Adres SelectedAdres { get; set; }
 
@@ -26,7 +26,7 @@ public partial class VriendDetailPage2 : ContentPage
         VoornaamEntryveld.Text = selectedItem.Voornaam;
         AchternaamEntryveld.Text = selectedItem.Achternaam;
         TelefoonEntryveld.Text = selectedItem.Telefoon;
-        AdresEntryveld.Text = selectedItem.Adres.Adresregel;
+ 
         StraatEntryveld.Text = selectedItem.Adres.Straat;
         PostcodeEntryveld.Text = selectedItem.Adres.Postcode;
         PlaatsEntryveld.Text = selectedItem.Adres.Plaats;
@@ -35,6 +35,8 @@ public partial class VriendDetailPage2 : ContentPage
     }
 
 
+    //check dat er geen lege Vriend wordt aangemaakt
+    // als je naar de Nieuwe vriend pagina navigeert, niks invuld en teruggaat
 
 
     public VriendDetailPage2(VriendenDatabase database)
@@ -67,8 +69,7 @@ public partial class VriendDetailPage2 : ContentPage
     private void AdresPicker_SelectedIndexChanged(object sender, EventArgs e)
     {
         SelectedVriend.Adres = (Adres)AdresPicker.SelectedItem;
-        //AdresEntryveld.Text = SelectedVriend.Adres.Adresregel;
-        StraatEntryveld.Text = SelectedVriend.Adres.Straat;
+         StraatEntryveld.Text = SelectedVriend.Adres.Straat;
         PostcodeEntryveld.Text = SelectedVriend.Adres.Postcode;
         PlaatsEntryveld.Text = SelectedVriend.Adres.Plaats;
         LandEntryveld.Text = SelectedVriend.Adres.Land;
@@ -141,13 +142,13 @@ public partial class VriendDetailPage2 : ContentPage
             }
             else
             {
-               // await Database.Update(SelectedVriend);
                 
                     SelectedVriend.Adres.Straat = StraatEntry.Text;
                     SelectedVriend.Adres.Postcode = PostcodeEntry.Text;
                     SelectedVriend.Adres.Plaats = StadEntry.Text;
                     SelectedVriend.Adres.Land = LandEntry.Text;
 
+                //Textvelden updaten
                 StraatEntryveld.Text = StraatEntry.Text ;
                 PostcodeEntryveld.Text = PostcodeEntry.Text;
                 PlaatsEntryveld.Text = StadEntry.Text;
@@ -158,7 +159,24 @@ public partial class VriendDetailPage2 : ContentPage
        
         }
 
+    private async void DeleteItem_Clicked(object sender, EventArgs e)
+    {
 
+        await Database.Delete(SelectedVriend);
+
+        VoornaamEntryveld.Text = null;
+        AchternaamEntryveld.Text = null; 
+        TelefoonEntryveld.Text = null;
+
+        StraatEntryveld.Text = null;
+        PostcodeEntryveld.Text = null;
+        PlaatsEntryveld.Text = null;
+        LandEntryveld.Text = null;
+
+        SelectedVriend = null;
+        
+        
+    }
 }
 
 

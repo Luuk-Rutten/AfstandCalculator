@@ -55,15 +55,15 @@ protected override async void OnNavigatedTo(NavigatedToEventArgs args)
         lblVriend.Text = selectedItem.FullName.ToString();
         lblTelefoon.Text = selectedItem.Telefoon.ToString();
 
-        if(selectedItem.Adres == null)
+        if (selectedItem.Adres == null)
         {
             lblAdres.Text = "Geen adres opgegeven.";
             //Afstandlbl.Text = "Geen adres opgegeven.";
         }
         else
-
-        lblAdres.Text = selectedItem.Adres.Adresregel.ToString();
-
+        {
+            lblAdres.Text = selectedItem.Adres.Adresregel.ToString();
+        }
 
     }
   

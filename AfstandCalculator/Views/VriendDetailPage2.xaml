@@ -5,6 +5,15 @@
     x:Class="AfstandCalculator.Views.VriendDetailPage2"
     Title="VriendDetailPage2">
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            x:Name="DeleteItem"
+            IconImageSource="trash.png"
+             Clicked="DeleteItem_Clicked" />
+
+    </ContentPage.ToolbarItems>
+
+
     <ScrollView
         Padding="10">
 

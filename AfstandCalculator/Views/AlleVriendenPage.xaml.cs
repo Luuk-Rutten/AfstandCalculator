@@ -21,8 +21,7 @@ public partial class AlleVriendenPage : ContentPage
     {
 
         base.OnNavigatedTo(args);
-        LVVrienden.ItemsSource = await Database.GetVriendenAsync();
-        SearchBar.Text = string.Empty;
+
 
 
     }
@@ -31,7 +30,8 @@ public partial class AlleVriendenPage : ContentPage
     {
 
         base.OnAppearing();
-
+        LVVrienden.ItemsSource = await Database.GetVriendenAsync();
+        SearchBar.Text = string.Empty;
 
     }
 
