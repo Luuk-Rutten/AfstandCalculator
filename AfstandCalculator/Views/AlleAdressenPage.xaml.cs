@@ -7,7 +7,6 @@ public partial class AlleAdressenPage : ContentPage
 {
     VriendenDatabase Database;
 
-    //private Adres SelectedAdres;
 
     public Adres? SelectedAdres { get; set; }
 

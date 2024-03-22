@@ -31,10 +31,17 @@ public partial class AfstandtotvriendenPage : ContentPage
 
 }
 
-protected override async void OnNavigatedTo(NavigatedToEventArgs args)
+    public AfstandtotvriendenPage(VriendenDatabase database)
+    {
+        InitializeComponent();
+        Database = database;
+
+    }
+
+    protected override async void OnNavigatedTo(NavigatedToEventArgs args)
     {
         base.OnNavigatedTo(args);
-        this.selectedItem = selectedItem;
+       // this.selectedItem = selectedItem;
 
         await BerekenAfstand();
         await PopulateLabel();
@@ -44,7 +51,7 @@ protected override async void OnNavigatedTo(NavigatedToEventArgs args)
     protected override async void OnAppearing()
     {
         base.OnAppearing();
-        this.selectedItem = selectedItem;
+       // this.selectedItem = selectedItem;
 
         await BerekenAfstand();
         await PopulateLabel();
@@ -60,7 +67,6 @@ protected override async void OnNavigatedTo(NavigatedToEventArgs args)
         if (selectedItem.Adres == null)
         {
             lblAdres.Text = "Geen adres opgegeven.";
-            //Afstandlbl.Text = "Geen adres opgegeven.";
         }
         else
         {
@@ -103,9 +109,8 @@ protected override async void OnNavigatedTo(NavigatedToEventArgs args)
 
     private async void LVafstandvrienden_ItemSelected(object sender, SelectedItemChangedEventArgs e)
     {
-        // await Navigation.PushAsync(new VriendDetailPage(selectedItem));
 
-        var selectedItem = e.SelectedItem as Vriend;
+        Vriend? selectedItem = e.SelectedItem as Vriend;
         if (selectedItem != null)
         {
 

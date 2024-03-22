@@ -23,11 +23,6 @@
             >
 
             <Label
-                Text="Welcome to .NET MAUI!"
-                VerticalOptions="Center"
-                HorizontalOptions="Center" />
-
-            <Label
                 Text="Naam en Telefoonnummer"
                 FontSize="Large"
                 VerticalOptions="Center"
@@ -48,13 +43,10 @@
                 x:Name="TelefoonEntryveld"
                 Placeholder="Telefoonnummer"
                 TextColor="Black"
-                BackgroundColor="White" />
-            <Entry
-                x:Name="AdresEntryveld"
-                Placeholder="Vul Adres in"
-                TextColor="Black"
                 BackgroundColor="White"
-                IsVisible="Collapse"/>
+                  />
+
+            
             <HorizontalStackLayout HorizontalOptions="FillAndExpand"  FlowDirection="LeftToRight"  >
             <Entry
                 x:Name="StraatEntryveld"

@@ -17,6 +17,12 @@ public partial class AlleVriendenPage : ContentPage
         Connectivity = connectivity;
     }
 
+    public AlleVriendenPage(VriendenDatabase database)
+    {
+        InitializeComponent();
+        Database = database;
+
+    }
 
     protected override async void OnNavigatedTo(NavigatedToEventArgs args)
     {

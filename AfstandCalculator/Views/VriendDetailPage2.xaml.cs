@@ -11,11 +11,10 @@ public partial class VriendDetailPage2 : ContentPage
 
   
 
-    public Vriend SelectedVriend { get; set; }
+    public Vriend? SelectedVriend { get; set; }
 
     public Adres SelectedAdres { get; set; }
 
-    //string newadres;
 
     public VriendDetailPage2(Vriend selectedItem, VriendenDatabase database)
     {
@@ -34,9 +33,6 @@ public partial class VriendDetailPage2 : ContentPage
 
     }
 
-
-    //check dat er geen lege Vriend wordt aangemaakt
-    // als je naar de Nieuwe vriend pagina navigeert, niks invuld en teruggaat
 
 
     public VriendDetailPage2(VriendenDatabase database)
@@ -148,7 +144,7 @@ public partial class VriendDetailPage2 : ContentPage
                     SelectedVriend.Adres.Plaats = StadEntry.Text;
                     SelectedVriend.Adres.Land = LandEntry.Text;
 
-                //Textvelden updaten
+                //Textvelden worden geupdate
                 StraatEntryveld.Text = StraatEntry.Text ;
                 PostcodeEntryveld.Text = PostcodeEntry.Text;
                 PlaatsEntryveld.Text = StadEntry.Text;
@@ -173,8 +169,13 @@ public partial class VriendDetailPage2 : ContentPage
         PlaatsEntryveld.Text = null;
         LandEntryveld.Text = null;
 
-       // SelectedVriend = null;
-        
+        // SelectedVriend = null;
+
+        await DisplayAlert("Gebruiker verwijderd", "U gaat nu terug naar de hoofdpagina", "Oke");
+
+
+        await Navigation.PushAsync(new AlleVriendenPage(Database));
+
         
     }
 }
