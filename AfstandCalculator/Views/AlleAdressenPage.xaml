@@ -35,8 +35,7 @@
             x:Name="LVAdres"
             Margin="10"
             HasUnevenRows="True"
-            ItemSelected="LVAdres_ItemSelected"
-                    ItemTapped="LVAdres_ItemTapped">
+            ItemTapped="LVAdres_ItemTapped">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>

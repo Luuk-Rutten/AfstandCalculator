@@ -55,6 +55,13 @@ public class VriendenDatabase : IDisposable
         await Database.SaveChangesAsync();
     }
 
+    public async Task DeleteAdres(Adres adres)
+    {
+        Database.Remove(adres);
+        await Database.SaveChangesAsync();
+    }
+
+
     public IEnumerable<Vriend> SearchVriendenAsync(string InputText)
     {
         var Vrienden = Database.Vrienden;

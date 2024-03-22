@@ -11,7 +11,7 @@ public partial class VriendDetailPage2 : ContentPage
 
   
 
-    public Vriend? SelectedVriend { get; set; }
+    public Vriend SelectedVriend { get; set; }
 
     public Adres SelectedAdres { get; set; }
 
@@ -173,7 +173,7 @@ public partial class VriendDetailPage2 : ContentPage
         PlaatsEntryveld.Text = null;
         LandEntryveld.Text = null;
 
-        SelectedVriend = null;
+       // SelectedVriend = null;
         
         
     }

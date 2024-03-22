@@ -18,8 +18,10 @@ public partial class AfstandtotvriendenPage : ContentPage
     public List<Vriend> selectedFriends { get; set; }
 
 
+    NetworkAccess accessType = Connectivity.Current.NetworkAccess;
 
-    public AfstandtotvriendenPage(Vriend selectedItem, VriendenDatabase database)
+
+    public AfstandtotvriendenPage(Vriend selectedItem, VriendenDatabase database, IConnectivity connectivity)
     {
         InitializeComponent();
 
@@ -74,19 +76,27 @@ protected override async void OnNavigatedTo(NavigatedToEventArgs args)
 
         List<Vriend> LijstMetAfstanden = new List<Vriend> ();
 
-        foreach (var vriend in VriendenfromDb)
+        if (accessType != NetworkAccess.Internet)
         {
-            if (vriend.VriendId != selectedItem.VriendId && selectedItem.Adres != null)
-            {
-                var AfstandTussenVrienden = await LocationService.GetDistanceBetweenPoints(selectedItem.Adres.Adresregel, vriend.Adres.Adresregel);
-                vriend.Afstand = $"{AfstandTussenVrienden} KM";
-                LijstMetAfstanden.Add(vriend);
-            }
+            await DisplayAlert("Geen internet", "Controleer de internetverbinding!", "OK");
+
         }
-        selectedFriends = LijstMetAfstanden;
-        LVafstandvrienden.ItemsSource = selectedFriends;
+        else
+        {
 
+            foreach (var vriend in VriendenfromDb)
+            {
+                if (vriend.VriendId != selectedItem.VriendId && selectedItem.Adres != null)
+                {
+                    var AfstandTussenVrienden = await LocationService.GetDistanceBetweenPoints(selectedItem.Adres.Adresregel, vriend.Adres.Adresregel);
+                    vriend.Afstand = $"{AfstandTussenVrienden} KM";
+                    LijstMetAfstanden.Add(vriend);
+                }
+            }
+            selectedFriends = LijstMetAfstanden;
+            LVafstandvrienden.ItemsSource = selectedFriends;
 
+        }
     }
 
 

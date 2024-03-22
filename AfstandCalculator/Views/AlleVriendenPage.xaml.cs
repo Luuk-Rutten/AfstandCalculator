@@ -1,5 +1,6 @@
 ﻿using AfstandCalculator.Data;
 using AfstandCalculator.Models;
+using Microsoft.Maui.Networking;
 
 namespace AfstandCalculator.Views;
 
@@ -47,7 +48,7 @@ public partial class AlleVriendenPage : ContentPage
 
         if (selectedItem != null)
         {
-           await Navigation.PushAsync(new AfstandtotvriendenPage(selectedItem, Database));
+           await Navigation.PushAsync(new AfstandtotvriendenPage(selectedItem, Database, Connectivity));
 
         }
 
