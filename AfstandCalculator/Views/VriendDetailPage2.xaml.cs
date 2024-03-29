@@ -25,12 +25,22 @@ public partial class VriendDetailPage2 : ContentPage
         VoornaamEntryveld.Text = selectedItem.Voornaam;
         AchternaamEntryveld.Text = selectedItem.Achternaam;
         TelefoonEntryveld.Text = selectedItem.Telefoon;
- 
-        StraatEntryveld.Text = selectedItem.Adres.Straat;
-        PostcodeEntryveld.Text = selectedItem.Adres.Postcode;
-        PlaatsEntryveld.Text = selectedItem.Adres.Plaats;
-        LandEntryveld.Text = selectedItem.Adres.Land;
 
+        if (selectedItem.Adres != null)
+        {
+            StraatEntryveld.Text = selectedItem.Adres.Straat;
+            PostcodeEntryveld.Text = selectedItem.Adres.Postcode;
+            PlaatsEntryveld.Text = selectedItem.Adres.Plaats;
+            LandEntryveld.Text = selectedItem.Adres.Land;
+        }
+        else
+        {
+            StraatEntryveld.Text = null;
+            PostcodeEntryveld.Text = null;
+            PlaatsEntryveld.Text = null;
+            LandEntryveld.Text = null;
+
+        }
     }
 
 

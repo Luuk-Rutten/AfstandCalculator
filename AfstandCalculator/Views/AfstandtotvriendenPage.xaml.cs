@@ -92,7 +92,7 @@ public partial class AfstandtotvriendenPage : ContentPage
 
             foreach (var vriend in VriendenfromDb)
             {
-                if (vriend.VriendId != selectedItem.VriendId && selectedItem.Adres != null)
+                if (vriend.VriendId != selectedItem.VriendId && selectedItem.Adres != null && vriend.Adres != null)
                 {
                     var AfstandTussenVrienden = await LocationService.GetDistanceBetweenPoints(selectedItem.Adres.Adresregel, vriend.Adres.Adresregel);
                     vriend.Afstand = $"{AfstandTussenVrienden} KM";
